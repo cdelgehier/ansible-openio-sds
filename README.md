@@ -23,9 +23,9 @@ Please refer to the [requirements.txt](https://github.com/cdelgehier/ansible-ope
 
 ```pip install -r requirements.txt```
 
-- Some ansible roles:
+- Some ansible roles: ```./install_roles_dependencies.sh```
 
-```install_roles_dependencies.sh```
+
 
 ## Usage
 
@@ -43,6 +43,7 @@ These variables can be defined in the inventory but also in a file in the [host_
 ### Openstack: Deployment
 
 For the use of openstack, you must fill the file [openstackrc](https://github.com/cdelgehier/ansible-openio-sds/blob/master/openstackrc) with your identifiers and the endpoint keystone
+
 ```. openstackrc```
 
 
@@ -51,9 +52,23 @@ For the use of openstack, you must fill the file [openstackrc](https://github.co
 To remove all VM in openstack
 
 ```. openstackrc```
+
 ```ansible-playbook  mrproper.yml```
 
 ## Run
 
 ```ansible-playbook site.yml```
 
+## Contributing
+
+Issues, feature requests, ideas are appreciated and can be posted in the Issues section.
+
+Pull requests are also very welcome. The best way to submit a PR is by first creating a fork of this Github project, then creating a topic branch for the suggested change and pushing that branch to your own fork. Github can then easily create a PR based on that branch.
+
+## License
+
+BSD
+
+## Contributors
+
+- [Cédric DELGEHIER](https://github.com/cdelgehier/) (maintainer)
