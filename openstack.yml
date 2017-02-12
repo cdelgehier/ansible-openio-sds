@@ -1,0 +1,37 @@
+---
+- name: Deploy on OpenStack
+  hosts: openstack
+  gather_facts: false
+  connection: local
+  tags: install
+  vars_files:
+    - 'vars/openstack.yml'  
+
+  tasks:
+    - name : instance creation progressing...
+      os_server:
+        state: present
+        auth:
+        
+        name: '{{ inventory_hostname }}'
+        image: '{{ os_image }}'
+        key_name: '{{ keypair }}'
+        timeout: 200
+        flavor: '{{ flavor }}'
+        nics:
+          - net-id: '{{ netid }}'
+        auto_floating_ip: no  # do not associate floating IPs
+        meta:
+          hostname: '{{ inventory_hostname }}'
+      register: nodes
+      until: nodes|success
+      retries: 5
+      delay: 15
+
+    - name : retrieve private ip from nova
+      set_fact:
+        ansible_host: '{{ nodes.openstack.private_v4 }}'
+
+    - name : Wait the end of boot
+      local_action: wait_for host={{ ansible_host }} port=22 state=started delay=1 timeout=60
+...

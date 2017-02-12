@@ -1,0 +1,26 @@
+---
+- name: Customize machines
+  hosts: openstack
+  become : true
+  gather_facts: yes     
+  vars_files:
+    - 'vars/locales.yml'
+  vars:
+    cluster_ip: "{{ groups['openstack'] | map('extract', hostvars, ['ansible_host']) | list }}"
+    conscience_ip: "{{ groups['openstack'] | map('extract', hostvars, ['ansible_host']) | list | first }}"
+    redis_ip: "{{ groups['openstack'] | map('extract', hostvars, ['ansible_host']) | list | last }}"
+    configure: false
+
+  roles:
+    - { role: lborguetti.system-update, when: upgrade_system|bool|default(true), tags: install }
+    - { role: geerlingguy.ntp, become: true, tags: install}
+    - { role: openio-sds, tags: [ 'install', 'configure' ] }
+
+  pre_tasks:
+    - name: List servers ip
+      debug:
+        msg: "{{inventory_hostname}} => {{ansible_host}}"
+    - name: debug
+      debug:
+        var: upgrade_system
+...

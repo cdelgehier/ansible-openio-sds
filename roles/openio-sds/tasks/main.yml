@@ -1,0 +1,33 @@
+---
+# tasks file for openio-sds
+- name: Set Zookeeper Id
+  tags:
+    - install
+  set_fact:
+    zk_id: " {{ item.0 + 1 }}"
+  with_indexed_items: "{{ cluster_ip }}"
+  when: item.1 == "{{ ansible_default_ipv4['address'] }}"
+
+- debug: var=zk_id
+
+- name: Generate a puppet manifest
+  tags:
+    - install
+  template:
+    src: openio.pp.j2
+    dest: /root/openio.pp
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add repository OpenIO
+  tags:
+    - install
+  include : "{{ ansible_os_family }}.yml"
+
+- name: Initializing the openio cluster
+  tags:
+    - configure
+  include: initialize.yml
+  when: 
+    - configure == true

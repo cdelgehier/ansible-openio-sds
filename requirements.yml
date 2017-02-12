@@ -1,0 +1,11 @@
+# This is used to manage Ansible role dependences
+# http://docs.ansible.com/galaxy.html#installing-multiple-roles-from-a-file
+# Install with: `ansible-galaxy install -r requirements.yml`
+
+- src: lborguetti.system-update
+- src: geerlingguy.ntp
+- src: https://github.com/cdelgehier/ansible-role-openio-sds
+  version: master
+  name: openio-sds
+
+

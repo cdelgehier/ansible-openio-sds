@@ -1,0 +1,18 @@
+---
+- name: Cleanning OpenStack
+  hosts: openstack
+  gather_facts: false
+  connection: local
+
+#  vars_files:
+#    - 'vars/openstack.yml' 
+
+  tasks:
+     - name: Clean up OS servers
+       os_server:
+         state: absent
+         auth:
+           #auth_url: '{{ os_auth_url }}'
+           #project_name: '{{ project.name }}'
+         name: '{{ inventory_hostname }}'
+

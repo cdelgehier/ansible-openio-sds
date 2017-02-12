@@ -1,0 +1,18 @@
+---
+#############VPS PROVIDER##############
+- name: include OPENSTACK tasks
+  include: openstack.yml
+  tags: install
+
+#############PROVISIONING#############
+#- name: run ansible galaxy
+#  hosts: localhost
+#  gather_facts: no
+#  tasks: 
+#    - local_action: command ansible-galaxy install -r requirements.yml -p roles --ignore-errors
+#  tags: provisioning
+
+- name: include provisioning tasks 
+  include: provisioning.yml
+  tags: provisioning
+...

@@ -1,0 +1,7 @@
+---
+os_image: Centos7-Official
+flavor: 'c1.m2.d20'
+netid: 1fc0eee6-3e3e-48d4-a4fe-5d71c7e06c72
+upgrade_system: false
+...
+

@@ -1,0 +1,8 @@
+---
+ntp_timezone: Europe/Paris
+ntp_servers:
+ - 0.fr.pool.ntp.org iburst minpoll 3 maxpoll 7 iburst minpoll 3 maxpoll 7
+ - 1.fr.pool.ntp.org iburst minpoll 3 maxpoll 7 iburst minpoll 3 maxpoll 7
+ - 2.fr.pool.ntp.org iburst minpoll 3 maxpoll 7 iburst minpoll 3 maxpoll 7
+ - 3.fr.pool.ntp.org iburst minpoll 3 maxpoll 7 iburst minpoll 3 maxpoll 7
+
