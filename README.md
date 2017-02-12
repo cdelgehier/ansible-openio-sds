@@ -1,5 +1,5 @@
 # Example of building an openio cluster
----
+
 
 A set of playbook to build an opneio cluster.
 
