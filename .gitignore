@@ -15,7 +15,5 @@ _mailinglist
 
 roles/andrewrothstein.nettools/
 roles/geerlingguy.ntp/
-roles/geerlingguy.postfix/
-roles/geerlingguy.repo-epel/
 roles/lborguetti.system-update/
-
+roles/openio-sds/
